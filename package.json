@@ -1,0 +1,22 @@
+{
+  "name": "vidly-api",
+  "version": "1.0.0",
+  "description": "API for Vidly-App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "author": "Ram Maheshwari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fawn": "^2.1.5",
+    "joi": "^14.3.1",
+    "joi-objectid": "^2.0.0",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
