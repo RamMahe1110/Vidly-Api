@@ -1,4 +1,7 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 const _ = require("lodash");
 const router = express.Router();
 const { User, validate } = require("../models/users");
@@ -24,8 +27,13 @@ router.post("/", async (req, res) => {
   let user = await User.findOne({ email });
   if (user) return res.status(400).json("User already exist!");
   user = new User({ name, email, password });
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
   await user.save();
-  res.json(_.pick(user, ["_id", "name", "email"]));
+  const token = jwt.sign({ _id: user._id }, config.get("jwtPrivateKey"));
+  res
+    .header("x-auth-token", token)
+    .json(_.pick(user, ["_id", "name", "email"]));
 });
 
 router.put("/:id", async (req, res) => {
