@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("./middleware/logger");
 const authenticate = require("./middleware/authenticate");
+const users = require("./routes/users");
 const genres = require("./routes/genres");
 const customers = require("./routes/customers");
 const movies = require("./routes/movies");
@@ -20,6 +21,7 @@ app.use(logger());
 app.use(authenticate());
 
 //Routes
+app.use("/api/users", users);
 app.use("/api/genres", genres);
 app.use("/api/customers", customers);
 app.use("/api/movies", movies);
