@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("./middleware/logger");
-const authenticate = require("./middleware/authenticate");
 const config = require("config");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -25,7 +24,6 @@ mongoose
 
 app.use(express.json());
 app.use(logger());
-app.use(authenticate());
 
 //Routes
 app.use("/api/users", users);
