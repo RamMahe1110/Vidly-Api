@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const logger = require("./middleware/logger");
 const config = require("config");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -23,7 +22,6 @@ mongoose
   .catch(err => console.error("Could not connect to MongoDB..."));
 
 app.use(express.json());
-app.use(logger());
 
 //Routes
 app.use("/api/users", users);
